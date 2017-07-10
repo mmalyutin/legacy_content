@@ -1,0 +1,305 @@
+---
+title: JBoss EAP6 for Spring users
+subtitle: Writing Spring applications the JBoss way
+description: JBoss-specific tools and utilities for building Spring applications
+---
+
+= partial('title.html.haml', {'title'=>page.title, 'subtitle'=>page.subtitle, 'splash'=>page.parent.splash, 'authors'=>page.parent.authors,  'presentation_date'=>page.parent.presentation_date})
+
+%section
+  %h2 Goal for today?
+  %blockquote.fragment
+    :markdown
+      Learn how to be a more productive Spring developer with JBoss technologies
+
+%section
+  :markdown
+    ## Agenda
+
+      * Conventional wisdom
+        * Spring and Java EE integration
+        * Starting quickly
+        * Enhancing Spring projects with Snowdrop
+      * The bleeding edge
+        * Testing Spring with Arquillian
+        * Mixing Spring and CDI
+        * Starting Spring projects with Forge
+
+%section
+  %h1 Conventional wisdom
+
+%section
+  %section
+    %h2 Spring + JBoss
+    %h3 (the basics)
+
+  %section
+    %h2 Spring 101: the Spring triangle
+    %img.diagram(src="#{site.base_url}/images/spring-triangle.png" width="500")
+  %section
+    %h2 Programming model
+    %table
+      %tr
+        %td
+          %img.diagram(src="#{site.base_url}/images/spring-triangle-progmodel.png")
+        %td
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        %td
+          %ul
+            %li.fragment Platform independent
+            %li.fragment Business concepts
+            %li.fragment Oblivious of infrastructure
+            %li.fragment 99% development time spent here!
+
+  %section
+    %h2 Portable service abstractions
+    %table
+      %tr
+        %td
+          %img.diagram(src="#{site.base_url}/images/spring-triangle-abstractions.png")
+        %td
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        %td
+          %ul
+            %li.fragment Backing the programming model
+            %li.fragment Decoupling the runtime for platform
+            %li.fragment ~1% of development time spent here
+            %li.fragment ... and 99% of production time!
+  %section
+    %h2 Spring and Java EE
+    %img.diagram(src="#{site.base_url}/images/spring-as7.png" width="700")
+  %section
+    %h2 JBoss services
+    %h3 Standard Java EE
+    %ul
+      %li Data access: pooled datasources
+      %pre
+        %code
+          :plain
+            &lt;jee:jndi-lookup id="dataSource"
+                  jndi-name="java:jboss/datasources/ExampleDS"
+                  expected-type="javax.sql.DataSource"/&gt;
+      %li Entity persistence via JPA
+      %pre
+        %code
+          :plain
+            &lt;jee:jndi-lookup id="entityManager"
+                      jndi-name="java:comp/env/hello/EntityManager"
+                      expected-type="javax.persistence.EntityManager"/&gt;
+  %section
+    %h2 JBoss services
+    %h3 Standard Java EE
+    %ul
+      %li Transaction service via JTA
+      %pre
+        %code
+          :plain
+            &lt;tx:jta-transaction-manager/&gt;
+      %li Messaging: message broker (HornetQ), JCA
+      %pre
+        %code
+          :plain
+            &lt;jms:jca-listener-container
+                     resource-adapter="resourceAdapter"
+                     acknowledge="auto"
+                     activation-spec-factory="activationSpecFactory"&gt;
+              &lt;jms:listener destination="/queue/sportsclub"
+                             ref="paymentNotificationProcessor"
+                             method="processPaymentNotification"/&gt;
+            &lt;/jms:jca-listener-container&gt;
+
+            &lt;jboss:activation-spec-factory id="activationSpecFactory" /&gt;
+
+            &lt;jboss:resource-adapter id="resourceAdapter"/&gt;
+
+            &lt;jee:jndi-lookup id="jcaConnectionFactory"
+                                expected-type="javax.jms.ConnectionFactory"/&gt;
+      %p
+        (JBoss namespace provided by Snowdrop)
+  %section
+    %h2 JBoss services
+    %h3 JBoss-specific
+    %ul
+      %li
+        Clustering
+        %ul
+          %li e.g. web session, second-level cache
+      %li
+        Caching (Infinispan)
+        %ul
+          %li via Spring 3.1 caching support and Infinispan-Spring integration
+
+  %section
+    %h2 JBoss services
+    %h3 Runtime-provided
+    %ul
+      %li Modular classloading
+      %li Annotation Scanning
+      %li Domain Management
+  %section
+    %h2 Tip #1
+    %blockquote.fragment
+      :markdown
+        Creating powerful Spring applications on JBoss AS can be a simple matter of choosing the
+        right configuration options.
+
+%section
+  %section
+    :markdown
+      ## How to get started?
+    
+      * Archetypes and quickstarts
+      * Running in the cloud
+    
+  %section
+    %h2 Demo 
+    %h3 Starting fast with the JBoss Developer Studio
+  
+
+  %section
+    %h2 Demo 
+    %h3 Running in the cloud with OpenShift
+
+  %section
+    %h2 Tip #2
+    %blockquote.fragment
+      :markdown
+        JBoss Tools and Developer Studio, as well as JBoss archetypes can help you with getting the
+        configuration options right.
+  
+
+%section
+  %section
+    %h2 Deeper integration with Snowdrop
+    %img(src="#{site.base_url}/images/snowdrop-logo.png")
+    %blockquote.fragment
+      :markdown
+        Enrich the experience of Spring users developing on JBoss AS
+  %section
+    %h2 How Snowdrop works
+    %img.diagram(src="#{site.base_url}/images/how-snowdrop-works.png" width="500")
+
+  %section
+    :markdown 
+      ## What brings Snowdrop new?
+      
+      * Adding JBoss-specific functionality
+        * e.g. application context bootstrapping
+      * Provide custom namespaces for JBoss
+        * shorter, portable definitions
+      * Replacement implementations for missing or incorrect Spring functionality
+        * load-time weaving, resource scanning
+        * contributed to the Spring Framework
+
+  %section
+    %h2 Tip #3
+    %blockquote.fragment
+      :markdown
+        Use Snowdrop for getting additional functionality, simplify configuration and closing the
+        gap with older Spring versions
+
+  
+%section
+  %h1 The bleeding edge
+  
+%section 
+  %section
+    %h2 Testing Spring applications with Arquillian
+    %ul
+      %li.fragment Arquillian: beyond unit tests
+      %li.fragment Fully configured in-container tests
+      %li.fragment Integrate with JUnit and TestNG (and your IDE)
+  %section
+    %h2 Arquillian Spring extension
+    %ul
+      %li.fragment In-container Spring context deployment
+      %li.fragment Spring bean injection
+      %li.fragment Artifact packaging
+      %li.fragment Support for custom Spring context classes
+  %section
+    %h2 Tip #4
+    %blockquote.fragment
+      :markdown
+        Exercise the real infrastructure of your application with Arquillian's Spring extension
+
+%section
+  %section
+    %h2 Integrating Spring and CDI
+  %section
+    %h2 Why?
+    %ul
+      %li
+        %b
+          Reuse
+        existing investments
+    %ul
+      %li
+        %b
+          Integrate groups
+        with various expertise
+    %ul
+      %li
+        %b
+          Simplify
+        integration of Spring and Java EE
+    %ul
+      %li
+        %b
+          Ease migration
+        of Spring applications to Java EE 6
+  %section
+    %h2 Features
+    %ul
+      %li
+        Integrating Spring components into CDI
+        %ul
+          %li Accessing Spring application contexts as CDI beans
+          %li Making Spring beans available as CDI beans
+      %li
+        Accessing CDI beans
+        %ul
+          %li Exposing CDI beans to Spring
+  %section
+    %h2 Demo - Spring CDI integration
+  %section
+    %h2 Beyond CDI
+    %img.diagram(src="#{site.base_url}/images/spring-general-cdi-integration.png" width="800")
+  %section
+    %h2 Tip #5
+    %blockquote.fragment
+      :markdown
+        Use your business code across technology lines!
+
+%section
+  %section
+    %h2 Spring MVC Forge plugin
+    %img(src="#{site.base_url}/images/forge-logo.png")
+  %section
+    %h2 Features
+    %ul
+      %li.fragment Adding Spring libraries to the project
+      %li.fragment Creating Spring persistence infrastructure (beans)
+      %li.fragment Creating Spring-based DAOs
+      %li.fragment Scaffolding Spring MVC views from entities
+      %li.fragment Integrates seamlessly with Java EE features
+  %section
+    %h2 Demo - Spring Forge Plugin
+  %section
+    %h2 Tip #6
+    %blockquote.fragment
+      :markdown
+        Use JBoss Forge to stay away from all kinds of boilerplate
+
+%section
+  %section
+    %h2 Is there a tip #7?
+
+  
+= partial 'can_i_get_support.html.haml'
+
+
+  
+  
+
+
+

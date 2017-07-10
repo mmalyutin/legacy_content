@@ -1,0 +1,45 @@
+/**
+ *  reveal.js style customizations for JBoss Developer Framework presentations
+ */
+ 
+/* Override default location for presentation font */
+@font-face {
+  font-family: 'League Gothic';
+  src: url('../fonts/leaguegothic/league_gothic-webfont.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/*body {*/
+	/*font-family: 'Lucida Grande';*/
+/*}*/
+
+
+/*body {*/
+    /*background: #ffffff;*/
+    /*color: #000000;*/
+/*}*/
+
+/*.reveal h1,*/
+/*.reveal h2,*/
+/*.reveal h3,*/
+/*.reveal h4 {*/
+    /*color: #000000;*/
+/*}*/
+
+/*.reveal section a:not(.image) {*/
+    /*color: #000000;*/
+/*}*/
+
+/*body {*/
+    /*background: -moz-radial-gradient(center center , ellipse farthest-corner, #555A5F 0%, #1C1E20 100%) repeat scroll 0 0 transparent;*/
+    /*color: #EEEEEE;*/
+    /*font-family: 'Lato',Times,'Times New Roman',serif;*/
+    /*font-size: 36px;*/
+    /*font-weight: 200;*/
+    /*letter-spacing: -0.02em;*/
+    /*margin: 0;*/
+    /*overflow: hidden;*/
+    /*padding: 0;*/
+    /*position: relative;*/
+/*}*/

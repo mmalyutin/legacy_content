@@ -1,0 +1,24 @@
+%section
+  %img.splash(src="#{site.base_url}/images/#{page.splash}" height="100%" )
+
+%section
+  .intro
+    %h2= page.title
+    - if page.subtitle
+      %h3= page.subtitle
+      
+    - if page.presentation_date
+      %div
+        %time= page.presentation_date.strftime('%B %Y')
+
+    .authors
+      - page.authors.each do |author|
+        .author
+          = author[:name]
+          - if author[:twitter_handle]
+            .handle
+              %img.icon(src="#{site.base_url}/images/glyphicons/glyphicons_392_twitter.png" style="filter:invert" )
+              %a(href="http://twitter.com/#!/#{author[:twitter_handle]}") @#{author[:twitter_handle]}
+            - if author[:role] || author[:company]
+              .role #{author[:role]}, #{author[:company]}
+

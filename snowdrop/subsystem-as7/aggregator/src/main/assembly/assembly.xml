@@ -1,0 +1,103 @@
+<!--
+    JBoss, Home of Professional Open Source.
+    Copyright 2013, Red Hat Middleware LLC, and individual contributors
+    as indicated by the @author tags. See the copyright.txt file in the
+    distribution for a full listing of individual contributors.
+
+    This is free software; you can redistribute it and/or modify it
+    under the terms of the GNU Lesser General Public License as
+    published by the Free Software Foundation; either version 2.1 of
+    the License, or (at your option) any later version.
+
+    This software is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+    Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public
+    License along with this software; if not, write to the Free
+    Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+    02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
+<assembly>
+    <id>deployer-module</id>
+    <formats>
+        <format>zip</format>
+    </formats>
+    <baseDirectory>/</baseDirectory>
+    <fileSets>
+        <fileSet>
+            <directory>${basedir}/../modules/spring-3.2/src/main/module</directory>
+            <outputDirectory>module-spring-3.2/org/springframework/spring/snowdrop</outputDirectory>
+            <includes>
+                <include>module.xml</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <directory>${basedir}/../modules/spring-3.2/target/dependency/lib</directory>
+            <outputDirectory>module-spring-3.2/org/springframework/spring/snowdrop</outputDirectory>
+            <includes>
+                <include>*.jar</include>
+            </includes>
+        </fileSet>
+
+        <fileSet>
+            <directory>${basedir}/../modules/spring-4.0/src/main/module</directory>
+            <outputDirectory>module-spring-4.0/org/springframework/spring/snowdrop</outputDirectory>
+            <includes>
+                <include>module.xml</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <directory>${basedir}/../modules/spring-4.0/target/dependency/lib</directory>
+            <outputDirectory>module-spring-4.0/org/springframework/spring/snowdrop</outputDirectory>
+            <includes>
+                <include>*.jar</include>
+            </includes>
+        </fileSet>
+
+        <fileSet>
+            <directory>${basedir}/../modules/spring-4.1/src/main/module</directory>
+            <outputDirectory>module-spring-4.1/org/springframework/spring/snowdrop</outputDirectory>
+            <includes>
+                <include>module.xml</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <directory>${basedir}/../modules/spring-4.1/target/dependency/lib</directory>
+            <outputDirectory>module-spring-4.1/org/springframework/spring/snowdrop</outputDirectory>
+            <includes>
+                <include>*.jar</include>
+            </includes>
+        </fileSet>
+
+        <fileSet>
+            <directory>${basedir}/../subsystem-as7/src/main/module</directory>
+            <outputDirectory>module-deployer/org/jboss/snowdrop/main</outputDirectory>
+            <includes>
+                <include>module.xml</include>
+            </includes>
+        </fileSet>
+
+
+
+        <fileSet>
+            <!-- Only get the Snowdrop files from /dependency/lib and not the Spring JARs, they are fetched from the above fileset.
+                 This allows us to pick the version of Spring we want when we install. -->
+            <directory>${basedir}/../subsystem-as7/target/dependency/lib</directory>
+            <outputDirectory>module-deployer/org/jboss/snowdrop/main</outputDirectory>
+            <includes>
+                <include>snowdrop-vfs.jar</include>
+                <include>snowdrop-interceptors.jar</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <directory>${basedir}/../subsystem-as7/target</directory>
+            <outputDirectory>module-deployer/org/jboss/snowdrop/main</outputDirectory>
+            <includes>
+                <include>snowdrop-subsystem-as7.jar</include>
+            </includes>
+        </fileSet>
+    </fileSets>
+</assembly>

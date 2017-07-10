@@ -1,0 +1,212 @@
+$dark_red: rgb(169, 0, 8);
+$light_red: rgb(212, 0, 13);
+$mid_grey: #aaa;
+$mid_grey_transparent: rgba(170, 170, 170, .8);
+
+.footer {
+ background-color: #cc0000;
+ width: 100%;
+ clear: both;
+ position: fixed;
+ z-index: 30;
+ height: 75px;
+ left: 0;
+ bottom: 0;
+}
+
+.footer .summit-logo {
+ position: relative;
+ z-index: 50;
+ top: -75px;
+ left: 35px;
+ float: left;
+ border: none;
+ background: none;
+}
+
+.footer .redhat-logo {
+ position: relative;
+ float: right;
+ z-index: 50;
+ top: -10px;
+ right: 20px;
+ border: none;
+ background: none;
+}
+
+.reveal {
+
+ section {
+  text-align: left;
+
+  blockquote {
+   margin: 25px auto;
+   p {
+    margin: 12px;
+    margin-bottom: 22px;
+   }
+  }
+
+  a:not(.image) {
+   color: white;
+  }
+
+  a:hover {
+   text-decoration: underline;
+   background: none !important;
+   color: white !important;
+  }
+
+  blockquote::before {
+   content: '';
+  }
+
+  blockquote::after {
+   content: '';
+  }
+
+  img {
+   margin-left:auto;
+   margin-right:auto;
+   display: block;
+   border: none;
+   background:none;
+   -webkit-box-shadow: none;
+   -moz-box-shadow: none;
+   box-shadow: none;
+
+  }
+
+  img.icon {
+   margin: 0px;
+   border: 0px;
+   padding: 0px;
+   display: inline;
+   vertical-align: middle;
+  }
+
+  h1, h2, h3 {
+   text-align: center;
+  }
+
+  .bottom {
+   bottom: 0;
+   position: absolute;
+  }
+
+  
+  .bottomoffset50 {
+   bottom: 50px;
+   position: absolute;
+  }
+
+  .floatright {
+   float:right;
+  }
+
+  .bottommargin50 {
+   margin-bottom: 50px;
+  }
+
+
+  .red {
+   color: $light_red;
+  }
+
+  .right {
+   position: absolute;
+   right: 0;
+  }
+
+  .center-text {
+    text-align: center;
+  }
+
+  img.diagram {
+   border: 3px solid $mid_grey;
+   background: rgba(255,255,255,0.95);
+   -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+   -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+   border-radius: 4px;
+  }
+
+  ul {
+   list-style: disc url("../images/glyphicons/glyphicons_211_right_arrow.png");
+   li {
+    margin-bottom: 10px;
+    padding-left: 10px;
+   }
+  }
+
+  ul.resources {
+   list-style: none;
+  }
+
+  .authors {
+   margin-top: 50px;
+   .author {
+    margin-top: 0px;
+    position: relative;
+    .role {
+     font-size: .7em;
+     margin-bottom: 0px;
+     margin-left: 50px;
+    }
+    .handle {
+     position: absolute;
+     top: 0px;
+     right: 0px;
+     font-size: .7em;
+    }
+   }
+  }
+ }
+}
+
+.reveal section img.splash, .reveal section .footer img {
+ border: none;
+ background: none;
+ -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+         box-shadow: none;
+ max-width: 800px;
+ max-height: 560px;
+}
+
+.reveal .images {
+ width: 100%;
+ padding-bottom: 50px;
+ background-color: #FFFFFF;
+}
+
+.reveal .images table {
+ background-color: #FFFFFF;
+ width: 100%;
+ margin: auto;
+}
+
+.reveal .images td {
+ vertical-align: middle;
+}
+
+.reveal .images img {
+ border: none;
+ background: none;
+ -webkit-box-shadow: none;
+ -moz-box-shadow: none;
+ box-shadow: none;
+}
+
+.reveal .vertical-center {
+ position: absolute;
+ top:25%;
+}
+
+.reveal .prettyprint {
+    background-color: #ffffff;
+}
+
+.reveal .prettyprint .prettyprint {
+    width: auto;
+}

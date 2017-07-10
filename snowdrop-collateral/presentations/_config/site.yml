@@ -1,0 +1,6 @@
+profiles:
+  development:
+  staging:
+	  http://docs.jboss.org/snowdrop/presentations/
+  production:
+	  

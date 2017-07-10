@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    JBoss, Home of Professional Open Source.
+    Copyright 2013, Red Hat Middleware LLC, and individual contributors
+    as indicated by the @author tags. See the copyright.txt file in the
+    distribution for a full listing of individual contributors.
+
+    This is free software; you can redistribute it and/or modify it
+    under the terms of the GNU Lesser General Public License as
+    published by the Free Software Foundation; either version 2.1 of
+    the License, or (at your option) any later version.
+
+    This software is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+    Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public
+    License along with this software; if not, write to the Free
+    Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+    02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
+<processor>
+    
+    <!-- Remove the nodes if they have already been added. This allows for clean re-installs -->
+    <remove>
+        <name>//s:extension[@module='org.jboss.snowdrop']</name>
+        <strict>false</strict>
+    </remove>
+
+    <remove>    
+        <name>//ss:subsystem</name>
+        <strict>false</strict>
+    </remove>
+    
+    <!-- Add the required nodes to make Snowdrop work once installed. -->
+    <add>
+        <inside>//s:extensions</inside>
+        <value>
+            <![CDATA[
+                <extension module="org.jboss.snowdrop"/>
+                ]]>
+        </value>
+        <strict>false</strict>
+    </add>
+
+    <add>
+        <inside>//s:profile</inside>
+        <value>
+            <![CDATA[
+                <subsystem xmlns="urn:jboss:domain:snowdrop:1.0"/>
+                ]]>
+        </value>
+        <strict>false</strict>
+    </add>
+    
+</processor>

@@ -30,6 +30,7 @@ import static org.jboss.as.controller.descriptions.ModelDescriptionConstants.SUB
 
 import java.util.List;
 import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javax.xml.stream.XMLStreamException;
 
@@ -183,12 +184,17 @@ public class SpringExtension implements Extension {
         @Override
         public void execute(OperationContext context, ModelNode operation) throws OperationFailedException {
             context.getResult().add(createAddSubSystemOperation());
-            context.completeStep();
+            context.completeStep(OperationContext.ResultHandler.NOOP_RESULT_HANDLER);
         }
 
         @Override
-        public ModelNode getModelDescription(Locale locale) {
-            return CommonDescriptions.getSubsystemDescribeOperation(locale);
-        }
+		public ModelNode getModelDescription(Locale locale)
+		{
+			if (locale == null) {
+				locale = Locale.getDefault();
+			}
+			final ResourceBundle bundle = ResourceBundle.getBundle(SpringExtension.class.getPackage().getName() + ".LocalDescriptions", locale);
+			return CommonDescriptions.getDescriptionOnlyOperation(bundle, ADD, "spring");
+		}
     }
 }
